@@ -1,12 +1,14 @@
-package com.example.demo.Models;
+package com.spring.service.Models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Table;
 
 import org.springframework.data.annotation.Id;
 
 @Entity
+@Table(name="transaction")
 public class Transaction {
 
 	@Id
