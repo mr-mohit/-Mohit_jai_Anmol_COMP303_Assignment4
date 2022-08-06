@@ -56,6 +56,18 @@ public class TransactionController {
 		}
 	}
 	
+	@GetMapping(path="/{CustomerId}")
+	public ResponseEntity<Transaction> getTransactionByCustomerId(@PathVariable("ustomerId") int customerId, @RequestBody Transaction transaction) throws Exception
+	{
+	try {	
+		 transaction= transactionService.getTransactionByCustomerId(customerId);
+		transactionService.saveTransaction(transaction);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}catch(NoSuchElementException e) {
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	}
+	
     @DeleteMapping("/{transactionId}")
     public void delete(@PathVariable("transactionId") Integer transactionId) {
 

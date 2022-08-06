@@ -1,9 +1,16 @@
 package com.example.demo.Controller;
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entity.Book;
@@ -28,4 +35,21 @@ public class BookController {
 	public Iterable<Book> getAllBooks(){
 		return bookService.getBooks();
 	}
+	
+	  @GetMapping("/{BookId}")
+	    public ResponseEntity<Book> get(@PathVariable("BookId") Integer BookId) {
+	        try {
+	            Book book = bookService.getBookbyId(BookId);
+	            return new ResponseEntity<Book>(book, HttpStatus.OK);
+	        } catch (NoSuchElementException e) {
+	            return new ResponseEntity<Book>(HttpStatus.NOT_FOUND);}
+	        }
+	    
+	  
+	  @RequestMapping(value = "/showBooks", method = RequestMethod.GET)
+	    public String findAllBooks(Model model) {
+	        model.addAttribute("books", bookService.getBooks());
+
+	        return "list-of-books";
+	    }
 }

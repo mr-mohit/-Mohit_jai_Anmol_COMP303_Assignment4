@@ -27,4 +27,11 @@ public class TransactionService {
 	public void deleteTransaction(Integer transactionId) {
 		transactionRepo.deleteById(transactionId);
 	}
+
+	public Transaction getTransactionByCustomerId(int CustomerId) {
+		return transactionRepo.getById(CustomerId);
+		
+	}
+	
+
 }

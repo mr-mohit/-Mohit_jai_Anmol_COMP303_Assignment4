@@ -19,4 +19,8 @@ public class BookService {
 	public Iterable<Book> getBooks(){
 		return bookRepo.findAll();
 	}
+	
+	public Book getBookbyId(int BookId) {
+		 return bookRepo.getById(BookId);
+	}
 }
