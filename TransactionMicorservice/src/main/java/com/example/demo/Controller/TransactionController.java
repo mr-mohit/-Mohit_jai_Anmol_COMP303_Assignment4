@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entity.Transaction;
 import com.example.demo.Service.TransactionService;
+import com.example.demo.dto.LendRequest;
+import com.example.demo.dto.LendResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -76,4 +80,10 @@ public class TransactionController {
 
         transactionService.deleteTransaction(transactionId);
     }
+    
+	@PostMapping("/showLendingInfo")
+	@ResponseStatus(value = HttpStatus.OK)
+	public LendResponse showLendingDetails(@RequestBody LendRequest request) throws JsonProcessingException {
+		return transactionService.displayLentBook(request);
+	}
 }
