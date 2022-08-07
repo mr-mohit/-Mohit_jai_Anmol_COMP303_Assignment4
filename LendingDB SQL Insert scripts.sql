@@ -17,11 +17,11 @@ CREATE TABLE `Transaction` (
 
 INSERT INTO `Transaction` (`customerid`,`bookid`,`trxndate`,`trxntype`)
 VALUES
-  (1,1,"2022-01-20","Check Out"),
-  (2,2,"2023-05-14","Check Out"),
-  (3,3,"2023-06-28","Check In"),
-  (4,4,"2021-08-05","Check Out"),
-  (5,5,"2023-06-05","Check In");
+  (1,1,"2022-01-20","Check_Out"),
+  (2,2,"2023-05-14","Check_Out"),
+  (3,3,"2023-06-28","Check_In"),
+  (4,4,"2021-08-05","Check_Out"),
+  (5,5,"2023-06-05","Check_In");
   
   DROP TABLE IF EXISTS `Book`;
 

@@ -6,4 +6,6 @@ import com.example.demo.Entity.Transaction;
 
 public interface TransactionRepository extends JpaRepository<Transaction,Integer>{
 
+	Iterable<Transaction> findBytrxntype(String trxntype);
+
 }

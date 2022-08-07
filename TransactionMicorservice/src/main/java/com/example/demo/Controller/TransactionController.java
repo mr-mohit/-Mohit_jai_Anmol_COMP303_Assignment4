@@ -1,10 +1,12 @@
 package com.example.demo.Controller;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,13 +60,12 @@ public class TransactionController {
 		}
 	}
 	
-	@GetMapping(path="/{CustomerId}")
-	public ResponseEntity<Transaction> getTransactionByCustomerId(@PathVariable("ustomerId") int customerId, @RequestBody Transaction transaction) throws Exception
+	@GetMapping(path="/showBooksfor/{trxntype}")
+	public ResponseEntity<Iterable<Transaction>> getBooksLendingStatus(@PathVariable("trxntype") String trxntype) throws Exception
 	{
 	try {	
-		 transaction= transactionService.getTransactionByCustomerId(customerId);
-		transactionService.saveTransaction(transaction);
-		return new ResponseEntity<>(HttpStatus.OK);
+		 //transactionService.getLentBooks(trxntype);
+		return new ResponseEntity<>(transactionService.getLentBooks(trxntype) , HttpStatus.OK);
 	}catch(NoSuchElementException e) {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}

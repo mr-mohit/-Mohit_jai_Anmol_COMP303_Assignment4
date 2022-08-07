@@ -28,8 +28,8 @@ public class TransactionService {
 		transactionRepo.deleteById(transactionId);
 	}
 
-	public Transaction getTransactionByCustomerId(int CustomerId) {
-		return transactionRepo.getById(CustomerId);
+	public Iterable<Transaction> getLentBooks(String trxntype) {
+		return transactionRepo.findBytrxntype(trxntype);
 		
 	}
 	
