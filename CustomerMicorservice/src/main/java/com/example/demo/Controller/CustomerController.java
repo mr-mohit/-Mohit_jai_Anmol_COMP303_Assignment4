@@ -1,5 +1,7 @@
 package com.example.demo.Controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entity.Customer;
 import com.example.demo.Service.CustomerService;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -21,7 +24,7 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@PostMapping
-	public Customer saveCustomer(@RequestBody Customer customer) {
+	public Customer saveCustomer(@RequestBody @Valid Customer customer) {
 		return customerService.saveCustomer(customer);
 	}
 	

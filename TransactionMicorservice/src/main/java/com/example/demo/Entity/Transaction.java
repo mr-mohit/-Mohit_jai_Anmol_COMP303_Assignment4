@@ -1,10 +1,17 @@
 package com.example.demo.Entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Id;
 
 
@@ -15,13 +22,16 @@ public class Transaction {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int transactionid;
-	@Column(nullable = false)
+	@Column(nullable = false, unique=true)
+	@NotNull(message = "customerid is mandatory")
 	public int customerid;
-	@Column(nullable = false)
+	@Column(nullable = false, unique=true)
+	@NotNull(message = "bookid is mandatory")
 	public int bookid;
-	@Column(nullable = false)
-	public String trxndate;
-	@Column(nullable = false)
+	@NotNull(message = "Transaction date is mandatory")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	public LocalDate trxndate;
+	@NotBlank(message = "Transaction type is mandatory")
 	public String trxntype;
 	
 	public Transaction() {
@@ -29,7 +39,10 @@ public class Transaction {
 		
 	}
 
-	public Transaction(int transactionid, int customerid, int bookid, String trxndate, String trxntype) {
+	public Transaction(int transactionid, @NotNull(message = "customerid is mandatory") int customerid,
+			@NotNull(message = "bookid is mandatory") int bookid,
+			@NotNull(message = "Transaction date is mandatory") LocalDate trxndate,
+			@NotBlank(message = "Transaction type is mandatory") String trxntype) {
 		super();
 		this.transactionid = transactionid;
 		this.customerid = customerid;
@@ -62,11 +75,11 @@ public class Transaction {
 		this.bookid = bookid;
 	}
 
-	public String getTrxndate() {
+	public LocalDate getTrxndate() {
 		return trxndate;
 	}
 
-	public void setTrxndate(String trxndate) {
+	public void setTrxndate(LocalDate trxndate) {
 		this.trxndate = trxndate;
 	}
 
@@ -77,6 +90,5 @@ public class Transaction {
 	public void setTrxntype(String trxntype) {
 		this.trxntype = trxntype;
 	}
-
 
 }

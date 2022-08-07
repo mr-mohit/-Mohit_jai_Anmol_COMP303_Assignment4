@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.persistence.Id;
 
 @Entity
@@ -14,13 +17,18 @@ public class Customer {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int fcustomerid;
-	@Column(nullable = false)
+	@NotBlank(message = "firstname is mandatory")
 	public String firstname;
-	@Column(nullable = false)
+	@NotBlank(message = "lastname is mandatory")
 	public String lastname;
+	@NotBlank(message = "address is mandatory")
 	public String address;
+	@NotBlank(message = "Phone number is mandatory")
+	@Size(max = 10, min = 10, message = "Phone number should be of 10 digits")
+    @Pattern(regexp = "[2-9][0-9]{9}", message = "Phone number is invalid")
 	public String phone;
-	@Column(nullable = false, unique = true)
+	@NotBlank(message = "Email is mandatory")
+	@Column(unique=true)
 	public String emailid;
 	
 	public Customer() {
@@ -28,7 +36,11 @@ public class Customer {
 		
 	}
 
-	public Customer(int fcustomerid, String firstname, String lastname, String address, String phone, String emailid) {
+	public Customer(int fcustomerid, @NotBlank(message = "firstname is mandatory") String firstname,
+			@NotBlank(message = "lastname is mandatory") String lastname,
+			@NotBlank(message = "address is mandatory") String address,
+			@NotBlank(message = "Phone number is mandatory") @Size(max = 10, min = 10, message = "Phone number should be of 10 digits") @Pattern(regexp = "[2-9][0-9]{9}", message = "Phone number is invalid") String phone,
+			@NotBlank(message = "Email is mandatory") String emailid) {
 		super();
 		this.fcustomerid = fcustomerid;
 		this.firstname = firstname;
@@ -85,6 +97,8 @@ public class Customer {
 	public void setEmailid(String emailid) {
 		this.emailid = emailid;
 	}
+
+
 	
 	
 }

@@ -1,6 +1,8 @@
 package com.example.demo.Controller;
 import java.util.NoSuchElementException;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +29,7 @@ public class BookController {
 	private BookService bookService;
 	
 	@PostMapping
-	public Book saveBook(@RequestBody Book book) {
+	public Book saveBook(@RequestBody @Valid Book book) {
 		return bookService.saveBook(book);
 	}
 	

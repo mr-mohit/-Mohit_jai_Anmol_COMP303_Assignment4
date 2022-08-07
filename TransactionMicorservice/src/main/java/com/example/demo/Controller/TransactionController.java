@@ -1,6 +1,8 @@
 package com.example.demo.Controller;
 import java.util.NoSuchElementException;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,7 @@ public class TransactionController {
 	
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.OK)
-	public Transaction saveTransaction(@RequestBody Transaction transaction) {
+	public Transaction saveTransaction(@RequestBody @Valid Transaction transaction) {
 		return transactionService.saveTransaction(transaction);
 	}
 
