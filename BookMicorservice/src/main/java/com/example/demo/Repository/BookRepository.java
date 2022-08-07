@@ -7,4 +7,5 @@ import com.example.demo.Entity.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book,Integer> {
 
+	Iterable<Book> findBytitle(String title);
 }

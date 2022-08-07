@@ -21,6 +21,10 @@ public class BookService {
 	}
 	
 	public Book getBookbyId(int BookId) {
-		 return bookRepo.getById(BookId);
+		 return bookRepo.findById(BookId).get();
+	}
+	
+	public Iterable<Book> getBooksByTitle(String title){
+		return bookRepo.findBytitle(title);
 	}
 }

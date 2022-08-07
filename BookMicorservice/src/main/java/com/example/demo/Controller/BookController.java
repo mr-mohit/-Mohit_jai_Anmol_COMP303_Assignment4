@@ -38,15 +38,18 @@ public class BookController {
 		return bookService.getBooks();
 	}
 	
-	  @GetMapping("/{BookId}")
-	    public ResponseEntity<Book> get(@PathVariable("BookId") Integer BookId) {
-	        try {
-	            Book book = bookService.getBookbyId(BookId);
-	            return new ResponseEntity<Book>(book, HttpStatus.OK);
-	        } catch (NoSuchElementException e) {
-	            return new ResponseEntity<Book>(HttpStatus.NOT_FOUND);}
-	        }
+	@GetMapping("/{BookId}")
+	public ResponseEntity<Book> get(@PathVariable("BookId") Integer BookId) {
+	  try {
+	         Book book = bookService.getBookbyId(BookId);
+	         return new ResponseEntity<Book>(book, HttpStatus.OK);
+	      } catch (NoSuchElementException e) {
+	          return new ResponseEntity<Book>(HttpStatus.NOT_FOUND);}
+	}
 	    
-	  
+	@GetMapping("/byTitle/{title}")
+	public Iterable<Book> getBooksByTitle(@PathVariable("title") String title){
+		return bookService.getBooksByTitle(title);
+	}  
 
 }
