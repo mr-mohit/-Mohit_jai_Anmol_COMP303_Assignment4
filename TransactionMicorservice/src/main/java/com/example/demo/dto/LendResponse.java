@@ -11,8 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LendResponse {
 
-	Transaction transaction;
-	String firstname;
-	String emailid;
-	String booktitle;
+	Book book;
+	Customer customer;
+	String transactionType;
 }

@@ -19,4 +19,8 @@ public class CustomerService {
 	public Iterable<Customer> getCustomers(){
 		return customerRepo.findAll();
 	}
+	
+	public Customer getCustomerById(Integer customerId) {
+		return customerRepo.findById(customerId).get();
+	}
 }
