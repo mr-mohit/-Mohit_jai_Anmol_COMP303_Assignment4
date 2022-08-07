@@ -2,6 +2,7 @@ package com.example.demo.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.Entity.Book;
 import com.example.demo.Repository.BookRepository;
@@ -11,6 +12,10 @@ public class BookService {
 
 	@Autowired
 	private BookRepository bookRepo;
+	
+	/*
+	 * @Autowired private RestTemplate resttemplate;
+	 */
 	
 	public Book saveBook(Book book) {
 		return bookRepo.save(book);

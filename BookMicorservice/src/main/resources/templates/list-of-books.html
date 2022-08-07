@@ -46,10 +46,6 @@
             <td th:text="${book.authorfirstname}">First Name</td>
             <td th:text="${book.rating}">Rating</td>
             <td>
-              <form th:method="get" th:action="@{/editJob}" class="inline-form">
-                <input type="hidden" name="bookId" th:value="${book.bookId}" />
-                <button class="btn btn-success" type="submit">Update</button>
-              </form>
               <form
                 th:method="post"
                 th:action="@{/deleteBook}"
@@ -63,13 +59,12 @@
         </tbody>
       </table>
       <div class="row row-padding justify-content-center">
-        <a class="btn btn-success" href="/addJob">Add New Book</a>
+        <a class="btn btn-success" href="/book/addBook">Add New Book</a>
       </div>
       <div
         class="row row-padding justify-content-center"
         id="back-to-dashboard"
       >
-        <a class="btn btn-secondary" href="/">Logout</a>
       </div>
     </div>
   </body>
