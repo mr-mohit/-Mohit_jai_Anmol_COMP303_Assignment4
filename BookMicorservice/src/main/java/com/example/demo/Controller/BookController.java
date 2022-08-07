@@ -46,10 +46,5 @@ public class BookController {
 	        }
 	    
 	  
-	  @RequestMapping(value = "/showBooks", method = RequestMethod.GET)
-	    public String findAllBooks(Model model) {
-	        model.addAttribute("books", bookService.getBooks());
 
-	        return "list-of-books";
-	    }
 }
