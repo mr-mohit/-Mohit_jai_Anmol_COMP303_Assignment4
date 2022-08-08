@@ -32,4 +32,8 @@ public class BookService {
 	public Iterable<Book> getBooksByTitle(String title){
 		return bookRepo.findBytitle(title);
 	}
+	
+	public void delete(int bookId){
+		bookRepo.deleteById(bookId);
+	}
 }

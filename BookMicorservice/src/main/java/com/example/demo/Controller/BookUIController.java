@@ -72,4 +72,10 @@ public class BookUIController {
 	        response.sendRedirect("/book/showBooks.html");
 
 	    }
+	    
+	    @GetMapping("/delete/{id}")
+	    public String deleteUser(@PathVariable("id") int id, Model model) {
+	        bookService.delete(id);
+	        return "redirect:/book/showBooks.html";
+	    }
 }

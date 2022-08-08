@@ -45,7 +45,8 @@
             <td th:text="${book.authorlastname}">Last Name</td>
             <td th:text="${book.authorfirstname}">First Name</td>
             <td th:text="${book.rating}">Rating</td>
-            <td>
+            <td><a th:href="@{/book/delete/{id}(id=${book.bookId})}">Delete</a></td>
+ <!--           <td>
               <form
                 th:method="post"
                 th:action="@{/deleteBook}"
@@ -54,7 +55,7 @@
                 <input type="hidden" name="bookId" th:value="${book.bookId}" />
                 <button class="btn btn-danger" type="submit">Delete</button>
               </form>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
