@@ -25,7 +25,7 @@ public class Customer {
 	public String address;
 	@NotBlank(message = "Phone number is mandatory")
 	@Size(max = 10, min = 10, message = "Phone number should be of 10 digits")
-    @Pattern(regexp = "[2-9][0-9]{9}", message = "Phone number is invalid")
+    @Pattern(regexp = "[1-9][0-9]{9}", message = "Phone number is invalid")
 	public String phone;
 	@NotBlank(message = "Email is mandatory")
 	@Column(unique=true)

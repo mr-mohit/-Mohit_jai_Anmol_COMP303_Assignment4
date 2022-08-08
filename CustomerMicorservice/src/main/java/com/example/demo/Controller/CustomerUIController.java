@@ -61,7 +61,7 @@ public class CustomerUIController {
  
   
   //post
-    @RequestMapping(value = "addCustomer", method = RequestMethod.POST)
+    @RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void  addCustomer(@ModelAttribute("customer") Customer customer, HttpServletResponse response) throws Exception {    
     	

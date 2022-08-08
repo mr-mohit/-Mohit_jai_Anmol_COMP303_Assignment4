@@ -25,6 +25,7 @@ public class TransactionUIController {
 	private TransactionService transactionService;
 	
 	RestTemplate restTemp=new RestTemplate();
+	
 	  @RequestMapping(path = "/lendBook", method = RequestMethod.GET)
 	    public String findAllTransactions(Model model) {
 		  try {
@@ -60,6 +61,11 @@ public class TransactionUIController {
 		  }
 		  
 		  
+	  }
+	  @RequestMapping(path = "/showTransactions", method = RequestMethod.GET)
+	  public String showTransactions(Model model) {
+		  model.addAttribute("transactions", transactionService.getTransactions());
+		  return "show-all-transaction";
 	  }
 	
 }
