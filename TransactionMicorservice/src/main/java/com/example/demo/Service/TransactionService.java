@@ -47,13 +47,23 @@ public class TransactionService {
 		return transactionRepo.findBytrxntype(trxntype);
 		
 	}
-	
-	public LendResponse displayLentBook(LendRequest request) throws JsonProcessingException  {
-		com.example.demo.dto.Transaction transaction = request.getTransaction();
-		Customer customer = resttemplate.getForObject("http://CUSTOMER-SERVICE/api/customer/"+transaction.getCustomerid(), Customer.class);
-		logger.info("Transaction Service getting Response from Customer-Service : "+new ObjectMapper().writeValueAsString(customer));
-		Book book = resttemplate.getForObject("http://BOOK-SERVICE/api/book/"+transaction.getBookid(), Book.class);
-		return new LendResponse(book,customer,transaction.getTrxntype());
+
+	public LendResponse displayLentBook(LendRequest request) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+	/*
+	 * public LendResponse displayLentBook(LendRequest request) throws
+	 * JsonProcessingException { com.example.demo.dto.Transaction transaction =
+	 * request.getTransaction(); Customer customer =
+	 * resttemplate.getForObject("http://CUSTOMER-SERVICE/api/customer/"+transaction
+	 * .getCustomerid(), Customer.class);
+	 * logger.info("Transaction Service getting Response from Customer-Service : "
+	 * +new ObjectMapper().writeValueAsString(customer)); Book book =
+	 * resttemplate.getForObject("http://BOOK-SERVICE/api/book/"+transaction.
+	 * getBookid(), Book.class); return new
+	 * LendResponse(book,customer,transaction.getTrxntype()); }
+	 */
 
 }

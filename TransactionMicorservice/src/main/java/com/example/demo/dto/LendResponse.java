@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LendResponse {
 
+	public LendResponse(Book book, Customer customer, String transactionType) {
+		// TODO Auto-generated constructor stub
+	}
 	Book book;
 	Customer customer;
 	String transactionType;

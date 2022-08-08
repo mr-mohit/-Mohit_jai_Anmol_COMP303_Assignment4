@@ -6,15 +6,15 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.example.demo.Entity.Customer;
 import com.example.demo.Service.CustomerService;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +27,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@PostMapping
+	@PostMapping()
 	public Customer saveCustomer(@RequestBody @Valid Customer customer) {
 		return customerService.saveCustomer(customer);
 	}
@@ -46,4 +46,28 @@ public class CustomerController {
             return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
         }
     }
+    
+    //PUT
+    @RequestMapping(value = "/updateCustomer/{customerId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    void updateCustomer(@PathVariable("customerId") int customerId, @RequestBody Customer customer) throws Exception {
+    	customer.setFcustomerid(customerId);
+    	customerService.updateCustomer(customer);
+    }
+    
+    //GET
+    //to show the customer details
+    @RequestMapping(value = "/view/{customerId}", method = RequestMethod.GET)
+       public String viewCustomer(@PathVariable("customerId") int customerId ,Model model ) throws Exception {
+        model.addAttribute("customer",customerService.getCustomerById(customerId));
+        return "customerDetails";
+    }
+    
+    //DELETE
+    @RequestMapping(value = "/deleteCustomer/{customerId}", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.OK)
+    void deleteCustomer(@PathVariable("customerId") int customerId) throws Exception {
+        customerService.deleteCustomer(customerId);
+    }
+    
 }

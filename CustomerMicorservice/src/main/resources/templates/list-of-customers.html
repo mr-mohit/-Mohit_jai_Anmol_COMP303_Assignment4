@@ -16,8 +16,10 @@
 		<thead class="thead-dark">
 			<tr>
 				<th>Customer Id</th>
-				<th>Customer Name</th>
-				<th></th>
+				<th>Customer's First Name</th>
+				<th>Customer's Last Name</th>
+				<th>Phone number</th>
+				<th>Email Id</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -26,16 +28,18 @@
 		<tr th:each="customer : ${customers}">
 			<td th:text="${customer.fcustomerid}">Customer Id</td>
 			<td th:text="${customer.firstname}">Customer's First Name</td>
-			<td> <a th:href="@{/update/{id}(id=${customer.fcustomerid})}"
+			<td th:text="${customer.lastname}">Customer's Last Name</td>
+			<td th:text="${customer.phone}">Phone number</td>
+			<td th:text="${customer.emailid}">Email Id</td>
+			<td> <a th:href="@{/customer/update/{id}(id=${customer.fcustomerid})}"
                 class="btn btn-primary">Update</a></td>
-                <td> <a th:href="@{/view/{id}(id=${customer.fcustomerid})}"
-                class="btn btn-info">View</a></td>
-			<td><a th:href="@{/deleteCustomer/{id}(id=${customer.fcustomerid})}"
+               
+			<td><a th:href="@{/customer/deleteCustomer/{id}(id=${customer.fcustomerid})}"
                 class="btn btn-danger">Delete</a></td>
 		</tr>
 		</tbody>
 		</table>
-    	<strong><a a th:href="@{/}" class="btn btn-primary" style="width:200px">Home</a></strong>
+    	<strong><a a th:href="@{/customer/showCustomers}" class="btn btn-primary" style="width:200px">Home</a></strong>
 	</div>
 </body>
 </html>

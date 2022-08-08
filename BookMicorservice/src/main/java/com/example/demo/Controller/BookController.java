@@ -28,7 +28,7 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
-	@PostMapping
+	@PostMapping("/addBook")
 	public Book saveBook(@RequestBody @Valid Book book) {
 		return bookService.saveBook(book);
 	}

@@ -23,4 +23,18 @@ public class CustomerService {
 	public Customer getCustomerById(Integer customerId) {
 		return customerRepo.findById(customerId).get();
 	}
+	
+	 
+    //update a customer
+    public void updateCustomer(Customer customer) throws Exception {
+        if(customerRepo.findById(customer.getFcustomerid())!=null) {
+        	customerRepo.save(customer);
+        }
+        else {
+            throw new Exception("Customer Id not found");
+        }
+    }
+    public void deleteCustomer(Integer customerId) {
+		customerRepo.deleteById(customerId);
+	}
 }
